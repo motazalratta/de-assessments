@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+message transaction {
+
+    message segment {
+        string DepartureAirportCode = 1;
+        string ArrivalAirportCode = 2;
+        string SegmentNumber = 3;
+        string LegNumber = 4;
+        string NumberOfPassengers = 5;
+    }
+
+    string UniqueId = 1;
+    string TransactionDateUTC = 2;
+    string Itinerary = 3;
+    string OriginAirportCode = 4;
+    string DestinationAirportCode = 5;
+    string OneWayOrReturn = 6;
+    repeated segment Segment = 7;
+}

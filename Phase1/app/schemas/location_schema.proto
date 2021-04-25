@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+message location {
+  
+  string AirportCode = 1;
+  string CountryName = 2;
+  string Region = 3;
+  
+}

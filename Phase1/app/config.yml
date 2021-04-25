@@ -1,0 +1,15 @@
+pubsub:
+    raw_file_dir: ../input/
+    archive_file_dir: ../archive/
+
+    topics:
+        transaction:
+            topic_id: transaction
+            schema_id: transaction_schema
+            proto_path: ./schemas/transaction_schema.proto
+            input_filename: transactions.json
+        location:
+            topic_id: location
+            schema_id: location_schema
+            proto_path: ./schemas/location_schema.proto
+            input_filename: locations.json
