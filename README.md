@@ -13,4 +13,4 @@ Cloud-based data streaming POC.
 
 ## Architecture Diagram
 
-![Test Image 3](/ArchitectureDiagram.png)
+![ArchitectureDiagram](/ArchitectureDiagram.png)
