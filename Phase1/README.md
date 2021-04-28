@@ -2,7 +2,7 @@
 
 A small python application reads all input files (and wait the new file to come) and publishes the data to Google Pub/Sub
 
-## Keu Points:
+## Key Points:
 - Configurable: reads all input from config.yml
     + input/output path folders
     + batch_settings (e.g. max_messages)
@@ -22,7 +22,7 @@ Build docker image
 sudo docker build -t phase1:v1 .
 ```
 
-## Execute
+## Usage
 I created two topics transaction (batch publish) and location (sequential publish)
 
 #### config.yml
