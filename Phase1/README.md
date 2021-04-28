@@ -1,12 +1,12 @@
 # Phase1 - Publisher
 
-A small python application reads all input files (and wait the new file to come) and publishes the data to Google Pub/Sub
+A small python application that reads all input files (waits for new files to arriave) and publishes the data to Google Pub/Sub
 
 ## Key Points:
-- Configurable: reads all input from config.yml
+- Configurable: reads all inputs from config.yml
     + input/output path folders
     + batch_settings (e.g. max_messages)
-    + array of topic
+    + array of topics
         * topic id
         * schema id
         * protobuf path
