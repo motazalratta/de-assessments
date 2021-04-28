@@ -8,7 +8,7 @@ RUN pip3 install -r /tmp/requirements.txt
 
 COPY ./app ${WORKDIR}
 
-ENV GOOGLE_APPLICATION_CREDENTIALS ="${WORKDIR}/key/googlecloud.key.file.json"
+ENV GOOGLE_APPLICATION_CREDENTIALS ="${WORKDIR}/config/googlecloud.key.file.json"
 ENV GOOGLE_CLOUD_PROJECT = ""
 
 CMD [ "python3", "main.py" ]

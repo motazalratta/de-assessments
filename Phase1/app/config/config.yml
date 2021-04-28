@@ -2,14 +2,21 @@ pubsub:
     raw_file_dir: ../input/
     archive_file_dir: ../archive/
 
+    batch_settings:
+        max_messages: 10
+        max_bytes: 1024 
+        max_latency: 2 # second
+        max_threads: 100
     topics:
         transaction:
             topic_id: transaction
             schema_id: transaction_schema
+            batch_publish: True
             proto_path: ./schemas/transaction_schema.proto
             input_filename: transactions.json
         location:
             topic_id: location
             schema_id: location_schema
+            batch_publish: False
             proto_path: ./schemas/location_schema.proto
             input_filename: locations.json

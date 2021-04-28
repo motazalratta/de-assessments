@@ -1,20 +1,40 @@
 import logging
+import time
+import threading
 
 from google.api_core.exceptions import AlreadyExists,InvalidArgument
 from google.cloud.pubsub import SchemaServiceClient,PublisherClient
+from google.cloud import pubsub_v1
 from google.pubsub_v1.types import Schema,Encoding
 
-
 class Topic:
-    
-    def __init__(self, project_id, topic_id, schema_id, proto_path, input_filename):
+    def __init__(self, project_id, topic_id, schema_id, proto_path, input_filename,batch_publish, batch_max_messages,batch_max_bytes,batch_max_latency,batch_max_threads):
         self.project_id = project_id
-        self.topic_id = topic_id
+        self.topic_id = topic_id        
         self.schema_id = schema_id
         self.proto_path = proto_path
         self.input_filename = input_filename
+        
+        self.batch_publish = batch_publish
+        self.batch_max_messages = batch_max_messages
+        self.batch_max_bytes = batch_max_bytes
+        self.batch_max_latency = batch_max_latency
 
-        self.publisher_client = PublisherClient()
+        batch_settings = pubsub_v1.types.BatchSettings(
+            max_messages=batch_max_messages, 
+            max_bytes=batch_max_bytes,
+            max_latency=batch_max_latency,
+        )
+        
+
+        self.open_threads=0
+        self.batch_max_threads = batch_max_threads
+
+        if self.batch_publish:
+            self.publisher_client = PublisherClient(batch_settings)
+        else:
+            self.publisher_client = PublisherClient()
+
         self.topic_path = self.publisher_client.topic_path(project_id, topic_id)
 
         # create the topic
@@ -62,5 +82,17 @@ class Topic:
     
     def publish(self,json_string):
         data = str(json_string).encode("utf-8")
-        future = self.publisher_client.publish(self.topic_path, data)
-        logging.info(f"Published message ID: {future.result()}")
+        if self.batch_publish:
+            future = self.publisher_client.publish(self.topic_path, data)
+            future.add_done_callback(self.callback)
+            while threading.active_count()>self.batch_max_threads:
+                logging.info(f"The open threads {threading.active_count()} > {self.batch_max_threads} => waiting 2 seconds")
+                time.sleep(2)
+        else:
+            future = self.publisher_client.publish(self.topic_path, data)
+            logging.info(f"Published message ID: {future.result()}")
+
+    def callback(self,future):
+        logging.debug(f"Published message ID: {future.result()}")
+
+
