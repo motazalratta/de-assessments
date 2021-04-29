@@ -1,0 +1,116 @@
+resources:
+
+- name: assessment-bucket
+  type: storage.v1.bucket
+
+- name: assessmentdb
+  type: gcp-types/bigquery-v2:datasets
+  properties:
+    datasetReference:
+      datasetId: assessmentdb
+      location: US
+
+- name: transactions
+  type: gcp-types/bigquery-v2:tables
+  properties:
+    datasetId: assessmentdb
+    timePartitioning:
+      field: transactiondateutc
+      type: DAY
+    tableReference:
+      tableId: transactions
+    schema:
+          fields:
+          - mode: nullable
+            name: transactiondateutc
+            type: TIMESTAMP
+          - mode: nullable
+            name: uniqueid
+            type: STRING
+          - mode: nullable
+            name: itinerary
+            type: STRING
+          - mode: nullable
+            name: originairportcode
+            type: STRING
+          - mode: nullable
+            name: destinationairportcode
+            type: STRING
+          - mode: nullable
+            name: onewayorreturn
+            type: STRING
+          - mode: nullable
+            name: segment_numberofpassengers
+            type: STRING
+          - mode: nullable
+            name: segment_segmentnumber
+            type: STRING
+          - mode: nullable
+            name: segment_legnumber
+            type: STRING
+          - mode: nullable
+            name: segment_departureairportcode
+            type: STRING
+          - mode: nullable
+            name: segment_arrivalairportcode
+            type: STRING
+          - mode: nullable
+            name: md_publishtime
+            type: TIMESTAMP
+          - mode: nullable
+            name: md_inserttime
+            type: TIMESTAMP
+  metadata:
+    dependsOn:
+    - assessmentdb
+
+- name: locations
+  type: gcp-types/bigquery-v2:tables
+  properties:
+    datasetId: assessmentdb
+    tableReference:
+      tableId: locations
+    schema:
+          fields:
+          - mode: nullable
+            name: airportcode
+            type: STRING
+          - mode: nullable
+            name: countryname
+            type: STRING
+          - mode: nullable
+            name: region
+            type: STRING
+          - mode: nullable
+            name: md_publishtime
+            type: TIMESTAMP
+          - mode: nullable
+            name: md_inserttime
+            type: TIMESTAMP
+  metadata:
+    dependsOn:
+    - assessmentdb
+
+- name: deadletters
+  type: gcp-types/bigquery-v2:tables
+  properties:
+    datasetId: assessmentdb
+    timePartitioning:
+      field: datetime
+      type: MONTH
+    tableReference:
+      tableId: deadletters
+    schema:
+          fields:
+          - mode: nullable
+            name: datetime
+            type: TIMESTAMP
+          - mode: nullable
+            name: note
+            type: STRING
+          - mode: nullable
+            name: problematicrow
+            type: STRING
+  metadata:
+    dependsOn:
+    - assessmentdb
