@@ -43,7 +43,6 @@ I created two DataFlow pipelines:
 python3 main.py \
 --job_name transactionspipeline \
 --project analog-patrol-311615 \
---project_id analog-patrol-311615 \
 --input_topic "projects/analog-patrol-311615/topics/transaction" \
 --bigquery_table "analog-patrol-311615:assessmentdb.transactions" \
 --bigquery_deadletter_table "analog-patrol-311615:assessmentdb.deadletters" \
