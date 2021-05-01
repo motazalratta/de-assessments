@@ -55,6 +55,16 @@ topics:
   batch_publish: true
   input_filename: transactions.json
 ```
+created docker image
+
+```sh
+sudo docker run \
+-e GOOGLE_CLOUD_PROJECT="<ProjectID>" \
+-e GOOGLE_APPLICATION_CREDENTIALS=/app/config/googlecloud.key.file.json \
+-v $(pwd)/config/:/app/config/ \
+-v $(pwd)/input/:/input/ \
+-v $(pwd)/archive/:/archive/ \
+phase1:v1```
 
 ## Possible Imporvments
 - pytest
