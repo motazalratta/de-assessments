@@ -15,7 +15,7 @@ A small python application that reads all input files (waits for new files to ar
 - Supports batch publish
 
 ## Activity Diagram
-![your-UML-diagram-name](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/motazalratta/de-assessments/main/Phase1/ActivityDiagram.iuml)
+![ActivityDiagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/motazalratta/de-assessments/main/Phase1/ActivityDiagram.iuml)
 
 ## Installation
 
