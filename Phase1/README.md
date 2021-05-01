@@ -67,5 +67,23 @@ sudo docker run \
 phase1:v1
 ```
 
-## Possible Imporvments
-- pytest
+## pytest
+```sh
+$ pytest --verbose
+================================================================= test session starts =================================================================
+platform linux -- Python 3.8.5, pytest-4.6.11, py-1.10.0, pluggy-0.13.1 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/motaz/repo/de-assessments/Phase1/app
+plugins: forked-1.3.0, requests-mock-1.8.0, timeout-1.4.2, xdist-1.34.0
+collected 7 items
+
+main_test.py::test_not_required_args_provided PASSED                                                                                            [ 14%]
+main_test.py::test_env_variable_not_set PASSED                                                                                                  [ 28%]
+main_test.py::test_input_file_path_invalid PASSED                                                                                               [ 42%]
+main_test.py::test_invalid_input_file_missing_archive_dir PASSED                                                                                [ 57%]
+main_test.py::test_invalid_input_file_missing_raw_dir PASSED                                                                                    [ 71%]
+main_test.py::test_valid_input_file_with_unfound_pathes PASSED                                                                                  [ 85%]
+main_test.py::test_valid_input_file_with_valid_config PASSED                                                                                    [100%]
+
+============================================================== 7 passed in 14.16 seconds ==============================================================
+```
