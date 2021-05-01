@@ -1,0 +1,34 @@
+@startuml
+hide circle
+entity "transaction" {
+    transactiondateutc: TIMESTAMP
+    uniqueid: STRING
+    itinerary: STRING
+    originairportcode: STRING
+    destinationairportcode: STRING
+    onewayorreturn: STRING
+    segment_numberofpassengers: STRING
+    segment_segmentnumber: STRING
+    segment_legnumber: STRING
+    segment_departureairportcode: STRING
+    segment_arrivalairportcode: STRING
+    md_publishtime: TIMESTAMP
+    md_inserttime: TIMESTAMP
+}
+
+entity locations {
+    airportcode: STRING
+    countryname: STRING
+    region: STRING
+    md_publishtime: TIMESTAMP
+    md_inserttime: TIMESTAMP
+}
+
+entity deadletters #A9DCDF{
+    datetime: TIMESTAMP
+    note: STRING
+    problematicrow: STRING
+}
+
+@enduml
+
