@@ -64,7 +64,8 @@ sudo docker run \
 -v $(pwd)/config/:/app/config/ \
 -v $(pwd)/input/:/input/ \
 -v $(pwd)/archive/:/archive/ \
-phase1:v1```
+phase1:v1
+```
 
 ## Possible Imporvments
 - pytest
