@@ -1,0 +1,11 @@
+@startuml
+start
+    while (true)
+        while (input files available?) is (yes)
+          :read input file;
+          :publish line by line\nto related topic;
+        endwhile (no)
+        :sleep 60 sec;
+    endwhile
+stop
+@enduml
