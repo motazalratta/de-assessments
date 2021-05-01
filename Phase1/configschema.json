@@ -1,0 +1,67 @@
+{
+   "title":"pubsub",
+   "description":"configuration for phase1",
+   "type":"object",
+   "properties":{
+      "raw_file_dir":{
+         "description":"the folder which contains the raw files",
+         "type":"string"
+      },
+      "archive_files_dir":{
+         "description":"the raw files will be moved to archive_files_dir after processing",
+         "type":"string"
+      },
+      "batch_settings":{
+         "type":"object",
+         "properties":{
+            "max_messages":{
+               "type":"number"
+            },
+            "max_bytes":{
+               "type":"number"
+            },
+            "max_latency":{
+               "type":"number"
+            },
+            "max_threads":{
+               "type":"number"
+            }
+         },
+         "required":[
+            "max_messages",
+            "max_bytes",
+            "max_latency",
+            "max_threads"
+         ]
+      },
+      "topics":{
+         "type":"array",
+         "items":{
+            "type":"object",
+            "properties":{
+               "topic_id":{
+                  "type":"string"
+               },
+               "schema_id":{
+                  "type":"string"
+               },
+               "batch_publish":{
+                  "type":"boolean"
+               },
+               "proto_path":{
+                  "type":"string"
+               },
+               "input_filename":{
+                  "type":"string"
+               }
+            }
+         }
+      }
+   },
+   "required":[
+      "raw_file_dir",
+      "archive_files_dir",
+      "batch_settings",
+      "topics"
+   ]
+}

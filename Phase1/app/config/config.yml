@@ -1,22 +1,24 @@
-pubsub:
-    raw_file_dir: ../input/
-    archive_file_dir: ../archive/
+# the folder which contains the raw files
+raw_files_dir: "../input/"
+# the raw files will be moved to archive_files_dir after processing
+archive_files_dir: "../archive/"
 
-    batch_settings:
-        max_messages: 10
-        max_bytes: 1024 
-        max_latency: 2 # second
-        max_threads: 100
-    topics:
-        transaction:
-            topic_id: transaction
-            schema_id: transaction_schema
-            batch_publish: True
-            proto_path: ./schemas/transaction_schema.proto
-            input_filename: transactions.json
-        location:
-            topic_id: location
-            schema_id: location_schema
-            batch_publish: False
-            proto_path: ./schemas/location_schema.proto
-            input_filename: locations.json
+# the batch publish settings
+batch_settings:
+  max_bytes: 1024
+  max_latency: 2 # second
+  max_messages: 10
+  max_threads: 100
+
+# list of topics 
+topics:
+- topic_id: location
+  schema_id: location_schema
+  proto_path: "./schemas/location_schema.proto"
+  batch_publish: false
+  input_filename: locations.json
+- topic_id: transaction 
+  schema_id: transaction_schema
+  proto_path: "./schemas/transaction_schema.proto"
+  batch_publish: true
+  input_filename: transactions.json
