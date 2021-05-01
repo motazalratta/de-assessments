@@ -11,4 +11,4 @@ COPY ./app ${WORKDIR}
 ENV GOOGLE_APPLICATION_CREDENTIALS ="${WORKDIR}/config/googlecloud.key.file.json"
 ENV GOOGLE_CLOUD_PROJECT = ""
 
-CMD [ "python3", "main.py" ]
+CMD [ "python3", "main.py" ,"--schema", "configschema.json", "--ymlfile", "config/config.yml" ]
