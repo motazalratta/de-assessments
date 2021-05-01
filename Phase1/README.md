@@ -14,6 +14,9 @@ A small python application that reads all input files (waits for new files to ar
 - Creates topics-schema and topics if they are not exist
 - Supports batch publish
 
+## Activity Diagram
+![your-UML-diagram-name](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/motazalratta/de-assessments/main/Phase1/ActivityDiagram.iuml)
+
 ## Installation
 
 Build docker image
@@ -27,40 +30,31 @@ I created two topics transaction (batch publish) and location (sequential publis
 
 #### config.yml
 ```yaml
-pubsub:
-    raw_file_dir: ../input/
-    archive_file_dir: ../archive/
+# the folder which contains the raw files
+raw_files_dir: "../input/"
+# the raw files will be moved to archive_files_dir after processing
+archive_files_dir: "../archive/"
 
-    batch_settings:
-        max_messages: 10
-        max_bytes: 1024 
-        max_latency: 2 # second
-        max_threads: 100
-    topics:
-        transaction:
-            topic_id: transaction
-            schema_id: transaction_schema
-            batch_publish: True
-            proto_path: ./schemas/transaction_schema.proto
-            input_filename: transactions.json
-        location:
-            topic_id: location
-            schema_id: location_schema
-            batch_publish: False
-            proto_path: ./schemas/location_schema.proto
-            input_filename: locations.json
-```
-created docker image
-```sh
-sudo docker run \
--e GOOGLE_CLOUD_PROJECT="<ProjectID>" \
--e GOOGLE_APPLICATION_CREDENTIALS=/app/config/googlecloud.key.file.json \
--v $(pwd)/config/:/app/config/ \
--v $(pwd)/input/:/input/ \
--v $(pwd)/archive/:/archive/ \
-phase1:v1
+# the batch publish settings
+batch_settings:
+  max_bytes: 1024
+  max_latency: 2 # second
+  max_messages: 10
+  max_threads: 100
+
+# list of topics 
+topics:
+- topic_id: location
+  schema_id: location_schema
+  proto_path: "./schemas/location_schema.proto"
+  batch_publish: false
+  input_filename: locations.json
+- topic_id: transaction 
+  schema_id: transaction_schema
+  proto_path: "./schemas/transaction_schema.proto"
+  batch_publish: true
+  input_filename: transactions.json
 ```
 
 ## Possible Imporvments
-- Config input error handling  
 - pytest
