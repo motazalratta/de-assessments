@@ -8,14 +8,15 @@ class DictAsMember(dict):
         if isinstance(value, dict):
             value = DictAsMember(value)
         if isinstance(value, list):
-            newlist = []
+            new_list = []
             for i in value:
                 if isinstance(i, dict):
-                    newlist.append(DictAsMember(i))
+                    new_list.append(DictAsMember(i))
                 else:
-                    newlist.append(i)
-            return newlist
+                    new_list.append(i)
+            return new_list
         return value
+
 
 class YmlValidatorLoader(object):
     def __init__(self, schema_path, yml_file_path):

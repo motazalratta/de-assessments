@@ -1,6 +1,5 @@
 import argparse
 import glob
-import jsonschema
 import logging
 import os
 import shutil
@@ -8,7 +7,6 @@ import sys
 import tarfile
 import threading
 import time
-import yaml
 
 from ymlvalidatorloader import YmlValidatorLoader
 from topic import Topic
@@ -19,9 +17,9 @@ def parse_args(arg_input=None):
         description='get path of schema and yml file.')
     required_named = parser.add_argument_group('required named arguments')
     required_named.add_argument('--schema ', metavar='path_to_schema', dest='path_to_schema',
-                               help='path to schema', required=True)
+                                help='path to schema', required=True)
     required_named.add_argument('--ymlfile', metavar='path_to_yml_config', dest='path_to_yml_config',
-                               help='path to yml', required=True)
+                                help='path to yml', required=True)
     return parser.parse_args(arg_input)
 
 
@@ -61,15 +59,15 @@ if __name__ == '__main__':
         sys.exit(6)
 
     # Create the archive_files_dir if it is not exist
-    arcive_dir = config.archive_files_dir
+    archive_dir = config.archive_files_dir
     try:
-        os.makedirs(arcive_dir, exist_ok=True)
+        os.makedirs(archive_dir, exist_ok=True)
     except Exception as e:
         logging.error('Can not create archive_files_dir: {}\n{}'.format(
             config.archive_files_dir), e)
         sys.exit(7)
 
-# Create all topics
+    # Create all topics
     topics = {}
     for topic in config.topics:
         topics[topic.input_filename] = Topic(
@@ -107,10 +105,10 @@ while True:
                                 logging.info(
                                     f'file={tarinfo.name};line={line_counter};threads_count={threading.active_count()}')
                                 topics[tarinfo.name].publish(line)
-                            line_counter = line_counter+1
+                            line_counter = line_counter + 1
         # Move the processed file to archive folder
         file_name = os.path.basename(targz_file)
-        dest = os.path.join(arcivedir, file_name)
+        dest = os.path.join(archive_dir, file_name)
         shutil.move(targz_file, dest)
     logging.info(f'Waiting the next scan ...')
     time.sleep(60)
