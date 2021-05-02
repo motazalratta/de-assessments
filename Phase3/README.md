@@ -82,3 +82,8 @@ e.g. 53708e22-d99c-e911-a821-8111ee911e19
 
 The **transactions.segment_arrivalairportcode** for the current row doesn't equal to **transactions.segment_arrivalairportcode** for the next row
 ![CompareArrivalairportcodeWithDepartureairportcodeSuspiciousSample01](images/CompareArrivalairportcodeWithDepartureairportcodeSuspiciousSample01.png)
+
+## Notebooks
+* [Transactions_Location_Distribution.ipynb](notebooks/Transactions_Location_Distribution.ipynb)
+* [Transactions_Datetime_Distribution.ipynb](notebooks/Transactions_Datetime_Distribution.ipynb)
+* [ETL_Latency.ipynb](notebooks/ETL_Latency.ipynb)
