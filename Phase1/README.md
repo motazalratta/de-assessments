@@ -1,6 +1,6 @@
 # Phase1 - Publisher
 
-A small python application that reads all input files (waits for new files to arriave) and publishes the data to Google Pub/Sub
+A small python application that reads all input files (waits for new files to appear) and publishes the data to Google Pub/Sub
 
 ## Key Points
 - Configurable: reads all inputs from config.yml
@@ -11,7 +11,7 @@ A small python application that reads all input files (waits for new files to ar
         * schema id
         * protobuf path
         * input filename (the expected json file name in input tar.gz)
-- Creates topics-schema and topics if they are not exist
+- Creates topics-schema and topics if they do not exist
 - Supports batch publish
 
 ## Activity Diagram
@@ -26,7 +26,9 @@ sudo docker build -t phase1:v1 .
 ```
 
 ## Usage
-I created two topics transaction (batch publish) and location (sequential publish)
+I created two topics: <br>
+transaction (batch publish)<br>
+location (sequential publish)
 
 #### config.yml
 ```yaml
