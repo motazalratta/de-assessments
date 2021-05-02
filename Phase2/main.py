@@ -1,12 +1,12 @@
 import argparse
 import json
 import logging
-import sys
 import random
+import sys
 
 import apache_beam as beam
-import pandas as pd
 import flat_table as ft
+import pandas as pd
 
 from apache_beam.io import ReadFromText
 from apache_beam.options.pipeline_options import PipelineOptions
@@ -17,20 +17,24 @@ from datetime import datetime
 class JobOptions(PipelineOptions):
     @classmethod
     def _add_argparse_args(cls, parser):
-        parser.add_argument(
+        required_named = parser.add_argument_group('required named arguments')
+        required_named.add_argument(
             "--input_topic",
             type=str,
-            help="The Cloud Pub/Sub topic to read from."
+            help="The Cloud Pub/Sub topic to read from.",
+            required=True
         )
-        parser.add_argument(
+        required_named.add_argument(
             "--bigquery_table",
             type=str,
             help="Bigquery Table to write raw salesforce data",
+            required=True
         )
-        parser.add_argument(
+        required_named.add_argument(
             "--bigquery_deadletter_table",
             type=str,
             help="Bigquery Table to write deadletters",
+            required=True
         )
 
 class AddTimestamps(beam.DoFn):
