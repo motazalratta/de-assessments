@@ -23,7 +23,7 @@ gcloud deployment-manager deployments create publisherinfra --config phase2infra
 ```
 sample of output:
 ```ssh
-motaz_r@cloudshell:~ (analog-patrol-311615)$ gcloud deployment-manager deployments create publisherinfra --config phase2infra.yml
+motaz_r@cloudshell:~ (<ProjectID>)$ gcloud deployment-manager deployments create publisherinfra --config phase2infra.yml
 The fingerprint of the deployment is b'zpOJYq2jwMGK8yIHPW8S9Q=='
 Waiting for create [operation-1619728838732-5c1228210aaa8-e4a63bc6-a430482a]...done.
 Create operation operation-1619728838732-5c1228210aaa8-e4a63bc6-a430482a completed successfully.
@@ -46,10 +46,10 @@ I created two DataFlow pipelines:
 ```ssh
 python3 main.py \
 --job_name transactionspipeline \
---project analog-patrol-311615 \
---input_topic "projects/analog-patrol-311615/topics/transaction" \
---bigquery_table "analog-patrol-311615:assessmentdb.transactions" \
---bigquery_deadletter_table "analog-patrol-311615:assessmentdb.deadletters" \
+--project <ProjectID> \
+--input_topic "projects/<ProjectID>/topics/transaction" \
+--bigquery_table "<ProjectID>:assessmentdb.transactions" \
+--bigquery_deadletter_table "<ProjectID>:assessmentdb.deadletters" \
 --streaming \
 --runner DataflowRunner \
 --region=us-east1 \
@@ -63,10 +63,10 @@ python3 main.py \
 ```ssh
 python3 main.py \
 --job_name locationspipeline \
---project analog-patrol-311615 \
---input_topic "projects/analog-patrol-311615/topics/location" \
---bigquery_table "analog-patrol-311615:assessmentdb.locations" \
---bigquery_deadletter_table "analog-patrol-311615:assessmentdb.deadletters" \
+--project <ProjectID> \
+--input_topic "projects/<ProjectID>/topics/location" \
+--bigquery_table "<ProjectID>:assessmentdb.locations" \
+--bigquery_deadletter_table "<ProjectID>:assessmentdb.deadletters" \
 --streaming \
 --runner DataflowRunner \
 --region=us-east1 \
