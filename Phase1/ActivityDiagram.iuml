@@ -1,16 +1,23 @@
 @startuml
-start
+    :config validation;
+    :load config;
+
+    while (topics available?) is (yes)
+      :create topic schema;
+      :create tpoic;
+    endwhile (no)
+
     while (true)
         while (input files available?) is (yes)
           :read input file;
           :publish line by line;
-note left
-take into consideration
-the topic settings 
-(e.g. batching)
-end note
+            note left
+            take into consideration
+            the topic settings 
+            (e.g. batching)
+            end note
         endwhile (no)
         :sleep 60 sec;
     endwhile
-stop
+    stop
 @enduml
