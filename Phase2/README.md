@@ -1,13 +1,13 @@
 # Phase2 - Consumer
 
-A small Python Apache Beam  pipeline to consume data from the Google Pub/Sub and loads it to Google BigQuery
+A small Python Apache Beam  pipeline to consume data from the Google Pub/Sub and load it to Google BigQuery
 
 ## Key Points
 - Stores deadletters in BigQuery table
 - Added two additional metadata columns which help in ETL latency calculation
     * publisher timestamp
     * db insert timestamp
-- The pipeline normalize\flatten the received messages before load
+- The pipeline normalizes\flattens the received messages before loading
 - Can be hosted by Google DataFlow (DataflowRunner) or local (DirectRunner)
 
 ## Pipeline Diagram
@@ -76,7 +76,7 @@ python3 main.py \
 ## Dead Letter Handling
 The messages that can't be processed (consumed) successfully will go to deadletter queue which will be stored in BigQuery. It is useful for debugging to determine why their processing doesn't succeed.
 
-For the given data file (input_data.tar.gz), only one transaction is considered as DeadLetter by the normalization step because the nested Segment objects have different structure.
+For the given data file (input_data.tar.gz), only one transaction is considered as DeadLetter by the normalization step because the nested Segment objects have different structures.
 ![DeadLetterSQL](images/DeadLetterSQL.png)
 
 By checking the raw file, the second Segment object doesn't have SegmentNumber attribute 
