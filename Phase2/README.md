@@ -10,7 +10,7 @@ A small Python Apache Beam  pipeline to consume data from the Google Pub/Sub and
 - The pipeline normalize\flatten the received messages before load
 - Can be hosted by Google DataFlow (DataflowRunner) or local (DirectRunner)
 
-## Pipeline Diagram:
+## Pipeline Diagram
 ![ArchitectureDiagram](images/PipelineDiagram.png)
 
 
@@ -114,6 +114,12 @@ $ zgrep -a '3cead752-bfab-e911-a821-8111ee911e19' input_data.tar.gz|jq
 }
 
 ```
+
+## Pipeline Metrics
+Here are some metrics for the Transaction Pipeline
+![TransactionPipelineMetrics](images/TransactionPipelineMetrics.png)
+![TransactionPipelineCpuUtilization](images/TransactionPipelineCpuUtilization.png)
+
 
 ## BigQuery Tables
 ![EntityRelationshipDiagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/motazalratta/de-assessments/main/Phase2/EntityRelationshipDiagram.iuml.txt)
