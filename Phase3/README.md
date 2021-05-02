@@ -46,8 +46,8 @@ $ zgrep -aio 'CountryName' input_data.tar.gz | wc -l
 ## Suspicious Data
 
 ### 1. Transactions - Itinerary and Segments Review
-There are some mismatch between itinerary column and segments columns
-for the majority of the rows, for a give **transactions.uniqueid** sorting by **transactions.segment_segmentnumber** and **transactions.segment_legnumber** will give the same fights order as in **transactions.itinerary**
+There is some mismatch between the itinerary column and the segments columns
+for the majority of the rows, for a given **transactions.uniqueid** sorting by **transactions.segment_segmentnumber** and **transactions.segment_legnumber** will give the same fights order as in **transactions.itinerary**
 
 sql: [CompareItineraryWithSegmentsSuspiciousCases.sql](queries/CompareItineraryWithSegmentsSuspiciousCases.sql)
 <br />
@@ -67,8 +67,8 @@ the itinerary is BRU-BKK-MEL-BNE-BKK-BRU but based on Segments the itinerary is 
 ![CompareItineraryWithSegmentsSuspiciousSample01](images/CompareItineraryWithSegmentsSuspiciousSample01.png)
 
 ### 2. Transactions.Segments - arrivalairportcode and departureairportcode Review
-There are some mismatch between Segment.arrivalairportcode and Segment.departureairportcode
-for the majority of the rows, for a give **transactions.uniqueid** sorting by **transactions.segment_segmentnumber** and **transactions.segment_legnumber**, the **transactions.segment_arrivalairportcode** for the current row will be equal to **transactions.segment_arrivalairportcode** for the next row
+There is some mismatch between the Segment.arrivalairportcode and the Segment.departureairportcode
+for the majority of the rows, for a given **transactions.uniqueid** sorting by **transactions.segment_segmentnumber** and **transactions.segment_legnumber**, the **transactions.segment_arrivalairportcode** for the current row will be equal to **transactions.segment_arrivalairportcode** for the next row
 
 sql: [CompareArrivalairportcodeWithDepartureairportcodeSuspiciousCases.sql](queries/CompareArrivalairportcodeWithDepartureairportcodeSuspiciousCases.sql)
 <br />
@@ -89,8 +89,8 @@ The **transactions.segment_arrivalairportcode** for the current row doesn't equa
 ![CompareArrivalairportcodeWithDepartureairportcodeSuspiciousSample01](images/CompareArrivalairportcodeWithDepartureairportcodeSuspiciousSample01.png)
 
 ### 3. Transactions - Itinerary and OneWayOrReturn Review
-There are some mismatch between Itinerary and type of transaction (OneWay or Return)
-for the majority of the rows, if the type of transaction is **OneWay** the transaction's source shouldn't be equal to the transaction's destination, on the other hand, when type of transaction is **Return** the transaction's source shoud be equal to the transaction's destination  
+There is some mismatch between the Itinerary and the type of transaction (OneWay or Return)
+for the majority of the rows, if the type of transaction is **OneWay** the transaction's source shouldn't be equal to the transaction's destination, on the other hand, when type of transaction is **Return** the transaction's source should be equal to the transaction's destination  
 
 sql: [CompareItineraryWithOneWayOrReturnSuspiciousCases.sql](queries/CompareItineraryWithOneWayOrReturnSuspiciousCases.sql)
 <br />
