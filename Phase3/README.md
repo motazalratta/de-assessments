@@ -3,7 +3,7 @@
 Use SQL statements to gain explore data
 
 ## Consumed Data Validation
-Compare the row count between raw files and bigqyery tables 
+Compare the row count between raw files and BigQuery tables 
 ### Transactions Table
 ```ssh
 $ zgrep -aio 'DepartureAirportCode' input_data.tar.gz | wc -l
@@ -37,6 +37,11 @@ $ zgrep -aio 'CountryName' input_data.tar.gz | wc -l
 1773
 
 ```
+
+## Notebooks
+* [Transactions_Location_Distribution.ipynb](notebooks/Transactions_Location_Distribution.ipynb)
+* [Transactions_Datetime_Distribution.ipynb](notebooks/Transactions_Datetime_Distribution.ipynb)
+* [ETL_Latency.ipynb](notebooks/ETL_Latency.ipynb)
 
 ## Suspicious Data
 
@@ -83,7 +88,35 @@ e.g. 53708e22-d99c-e911-a821-8111ee911e19
 The **transactions.segment_arrivalairportcode** for the current row doesn't equal to **transactions.segment_arrivalairportcode** for the next row
 ![CompareArrivalairportcodeWithDepartureairportcodeSuspiciousSample01](images/CompareArrivalairportcodeWithDepartureairportcodeSuspiciousSample01.png)
 
-## Notebooks
-* [Transactions_Location_Distribution.ipynb](notebooks/Transactions_Location_Distribution.ipynb)
-* [Transactions_Datetime_Distribution.ipynb](notebooks/Transactions_Datetime_Distribution.ipynb)
-* [ETL_Latency.ipynb](notebooks/ETL_Latency.ipynb)
+### 3. Transactions - Itinerary and OneWayOrReturn Review
+There are some mismatch between Itinerary and type of transaction (OneWay or Return)
+for the majority of the rows, if the type of transaction is **OneWay** the transaction's source shouldn't be equal to the transaction's destination, on the other hand, when type of transaction is **Return** the transaction's source shoud be equal to the transaction's destination  
+
+sql: [CompareItineraryWithOneWayOrReturnSuspiciousCases.sql](queries/CompareItineraryWithOneWayOrReturnSuspiciousCases.sql)
+<br />
+result: [CompareItineraryWithOneWayOrReturnSuspiciousCases.csv](results/CompareItineraryWithOneWayOrReturnSuspiciousCases.csv)
+
+#### Correct Transaction Samples
+
+e.g. 11a1c8c6-2891-e911-a821-8111ee911e19
+
+Since this transaction is **OneWay**, The first element of **transactions.itinerary** doesn't equal to last element of **transactions.itinerary** 
+![CompareItineraryWithOneWayOrReturnCorrectSample01](images/CompareItineraryWithOneWayOrReturnCorrectSample01.png)
+
+e.g. 4b2add1c-5442-e911-a820-a7f2c9e35195
+
+Since this transaction is **Return**, The first element of **transactions.itinerary** equals to last element of **transactions.itinerary** 
+![CompareItineraryWithOneWayOrReturnCorrectSample02](images/CompareItineraryWithOneWayOrReturnCorrectSample02.png)
+
+#### Suspicious Transaction Samples
+
+e.g. 7d0a93ac-2b0f-e911-a820-a7f2c9e35195
+
+This transaction is **OneWay** but the first element of **transactions.itinerary** equals to last element of **transactions.itinerary** 
+![CompareItineraryWithOneWayOrReturnSuspiciousSample01](images/CompareItineraryWithOneWayOrReturnSuspiciousSample01.png)
+
+e.g. edb847a5-7313-e911-a820-a7f2c9e35195
+
+This transaction is **Return** but the first element of **transactions.itinerary** doesn't equal to last element of **transactions.itinerary** 
+![CompareItineraryWithOneWayOrReturnSuspiciousSample02](images/CompareItineraryWithOneWayOrReturnSuspiciousSample02.png)
+
