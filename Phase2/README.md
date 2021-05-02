@@ -2,7 +2,7 @@
 
 A small Python Apache Beam  pipeline to consume data from the Google Pub/Sub and loads it to Google BigQuery
 
-## Key Points:
+## Key Points
 - Stores deadletters in BigQuery table
 - Added two additional metadata columns which help in ETL latency calculation
     * publisher timestamp
