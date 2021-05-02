@@ -2,7 +2,7 @@
 
 A small python application that reads all input files (waits for new files to arriave) and publishes the data to Google Pub/Sub
 
-## Key Points:
+## Key Points
 - Configurable: reads all inputs from config.yml
     + input/output path folders
     + batch_settings (e.g. max_messages)
