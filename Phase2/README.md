@@ -122,7 +122,7 @@ Here are some metrics for the Transaction Pipeline
 
 
 ## BigQuery Tables
-![EntityRelationshipDiagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/motazalratta/de-assessments/main/Phase2/EntityRelationshipDiagram.iuml.txt)
+![EntityRelationshipDiagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/motazalratta/de-assessments/main/Phase2/EntityRelationshipDiagram.iuml)
 
 ## Possible Improvements
 - Can use an orchestration such as Google Cloud Composer/Airflow
