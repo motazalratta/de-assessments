@@ -7,7 +7,7 @@ Cloud-based data streaming POC.
 - Google DataFlow/Apache Beam
 - Google BigQuery
 - Google Colab
-- Cloud Deployment Manager
+- Google Cloud Deployment Manager
 - Docker
 - Protocol Buffers
 - Python
