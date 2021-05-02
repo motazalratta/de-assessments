@@ -1,0 +1,9 @@
+"transactiondateutc","uniqueid","originairportcode","originairportcode_countery","destinationairportcode","destinationairportcode_countery","segment_arrivalairportcode","segment_arrivalairportcode_countery","segment_departureairportcode","segment_departureairportcode_countery"
+"2019-12-14 12:55:24.013000",cd15c3d7-571e-ea11-a822-e453a8e76766,,,,,SVO,Russia,GSV,
+"2019-11-26 19:14:10.500000","4728dbc4-6710-ea11-a822-e453a8e76766",SVO,Russia,GSV,,GSV,,SVO,Russia
+"2019-11-26 19:14:10.500000","4728dbc4-6710-ea11-a822-e453a8e76766",SVO,Russia,GSV,,SVO,Russia,GSV,
+"2019-10-13 19:12:03.237000","13d02030-d4ed-e911-a822-e453a8e76766",SIN,Singapore,PKX,,KUL,Malaysia,PKX,
+"2019-10-13 19:12:03.237000","13d02030-d4ed-e911-a822-e453a8e76766",SIN,Singapore,PKX,,KUL,Malaysia,SIN,Singapore
+"2019-10-13 19:12:03.237000","13d02030-d4ed-e911-a822-e453a8e76766",SIN,Singapore,PKX,,SIN,Singapore,KUL,Malaysia
+"2019-10-13 19:12:03.237000","13d02030-d4ed-e911-a822-e453a8e76766",SIN,Singapore,PKX,,PKX,,KUL,Malaysia
+"2019-12-02 19:54:11.343000",f784c65a-2415-ea11-a822-e453a8e76766,TLL,Estonia,PEK,China,HEL,Finland,PKX,
