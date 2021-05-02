@@ -40,7 +40,7 @@ $ zgrep -aio 'CountryName' input_data.tar.gz | wc -l
 
 ## Suspicious Data
 
-### Transactions - Itinerary and Segments Review
+### 1. Transactions - Itinerary and Segments Review
 There are some mismatch between itinerary column and segments columns
 for the majority of the rows, for a give **transactions.uniqueid** sorting by **transactions.segment_segmentnumber** and **transactions.segment_legnumber** will give the same fights order as in **transactions.itinerary**
 
@@ -61,7 +61,7 @@ e.g. 01f6c4d4-36de-e911-a822-e453a8e76766
 the itinerary is BRU-BKK-MEL-BNE-BKK-BRU but based on Segments the itinerary is BRU-BKK-MEL-BKK-BRU
 ![CompareItineraryWithSegmentsSuspiciousSample01](images/CompareItineraryWithSegmentsSuspiciousSample01.png)
 
-### Transactions.Segments - arrivalairportcode and departureairportcode Review
+### 2. Transactions.Segments - arrivalairportcode and departureairportcode Review
 There are some mismatch between Segment.arrivalairportcode and Segment.departureairportcode
 for the majority of the rows, for a give **transactions.uniqueid** sorting by **transactions.segment_segmentnumber** and **transactions.segment_legnumber**, the **transactions.segment_arrivalairportcode** for the current row will be equal to **transactions.segment_arrivalairportcode** for the next row
 
