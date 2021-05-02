@@ -39,9 +39,9 @@ $ zgrep -aio 'CountryName' input_data.tar.gz | wc -l
 ```
 
 ## Notebooks
-* [Transactions_Location_Distribution.ipynb](notebooks/Transactions_Location_Distribution.ipynb)
-* [Transactions_Datetime_Distribution.ipynb](notebooks/Transactions_Datetime_Distribution.ipynb)
-* [ETL_Latency.ipynb](notebooks/ETL_Latency.ipynb)
+* Transactions_Location_Distribution [Github Link](notebooks/Transactions_Location_Distribution.ipynb) [CoLab Link](https://colab.research.google.com/drive/13iaPT1hAyxKvA0UCMDcbIQSND5r1nkQr?usp=sharing)
+* Transactions_Datetime_Distribution [Github Link](notebooks/Transactions_Datetime_Distribution.ipynb) [CoLab Link](https://colab.research.google.com/drive/1ip2j2Rkxskkxwmdasg1p1jBPHvj3e55N?usp=sharing)
+* ETL_Latency [Github Link](notebooks/ETL_Latency.ipynb) [CoLab Link](https://colab.research.google.com/drive/1Fp3xnUjSs1e4JT4Fj7ZI0MQ8EpqvYIys?usp=sharing)
 
 ## Suspicious Data
 
