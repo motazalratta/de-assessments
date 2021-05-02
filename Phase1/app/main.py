@@ -84,31 +84,31 @@ if __name__ == '__main__':
             batch_max_threads=config.batch_settings.max_threads
         )
 
-while True:
-    raw_files = glob.glob(config.raw_files_dir + os.path.sep + '*.tar.gz')
-    logging.info('Scan all raw files :{}'.format(raw_files))
-    for targz_file in raw_files:
-        # Read all tar.gz files
-        with tarfile.open(targz_file, 'r:gz') as tar:
-            for tarinfo in tar:
-                line_counter = 0
-                # Read the files inside tar.gz without decompressing
-                if tarinfo.isreg():
-                    if tarinfo.name in topics:
-                        logging.info(f'Read {tarinfo.name}.')
-                        f = tar.extractfile(tarinfo.name)
-                        content = f.read().decode('utf-8', errors='ignore')
-                        lines = content.split('\n')
-                        # Publish line by line
-                        for i, line in enumerate(lines):
-                            if line:
-                                logging.info(
-                                    f'file={tarinfo.name};line={line_counter};threads_count={threading.active_count()}')
-                                topics[tarinfo.name].publish(line)
-                            line_counter = line_counter + 1
-        # Move the processed file to archive folder
-        file_name = os.path.basename(targz_file)
-        dest = os.path.join(archive_dir, file_name)
-        shutil.move(targz_file, dest)
-    logging.info(f'Waiting the next scan ...')
-    time.sleep(60)
+    while True:
+        raw_files = glob.glob(config.raw_files_dir + os.path.sep + '*.tar.gz')
+        logging.info('Scan all raw files :{}'.format(raw_files))
+        for targz_file in raw_files:
+            # Read all tar.gz files
+            with tarfile.open(targz_file, 'r:gz') as tar:
+                for tarinfo in tar:
+                    line_counter = 0
+                    # Read the files inside tar.gz without decompressing
+                    if tarinfo.isreg():
+                        if tarinfo.name in topics:
+                            logging.info(f'Read {tarinfo.name}.')
+                            f = tar.extractfile(tarinfo.name)
+                            content = f.read().decode('utf-8', errors='ignore')
+                            lines = content.split('\n')
+                            # Publish line by line
+                            for i, line in enumerate(lines):
+                                if line:
+                                    logging.info(
+                                        f'file={tarinfo.name};line={line_counter};threads_count={threading.active_count()}')
+                                    topics[tarinfo.name].publish(line)
+                                line_counter = line_counter + 1
+            # Move the processed file to archive folder
+            file_name = os.path.basename(targz_file)
+            dest = os.path.join(archive_dir, file_name)
+            shutil.move(targz_file, dest)
+        logging.info(f'Waiting the next scan ...')
+        time.sleep(60)
