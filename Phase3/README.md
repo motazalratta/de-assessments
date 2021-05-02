@@ -8,7 +8,7 @@ Compare the row count between raw files and BigQuery tables
 ```ssh
 $ zgrep -aio 'DepartureAirportCode' input_data.tar.gz | wc -l
 261367
-$ bq query --use_legacy_sql=false 'select count(*) from  `analog-patrol-311615.assessmentdb.transactions`'
+$ bq query --use_legacy_sql=false 'select count(*) from  `assessmentdb.transactions`'
 Waiting on bqjob_r51a92e7d5e60af0e_000001792af91ef5_1 ... (0s) Current status: DONE
 +--------+
 |  f0_   |
@@ -16,7 +16,7 @@ Waiting on bqjob_r51a92e7d5e60af0e_000001792af91ef5_1 ... (0s) Current status: D
 | 261364 |
 +--------+
 # there are 3 transactions in the deadletters table
-$ bq query --use_legacy_sql=false 'select array_length(regexp_extract_all(problematicrow, "DepartureAirportCode")) from `analog-patrol-311615.assessmentdb.deadletters`'
+$ bq query --use_legacy_sql=false 'select array_length(regexp_extract_all(problematicrow, "DepartureAirportCode")) from `assessmentdb.deadletters`'
 Waiting on bqjob_r3a2eb3a0877fed3f_000001792b016657_1 ... (0s) Current status: DONE   
 +-----+
 | f0_ |
@@ -26,7 +26,7 @@ Waiting on bqjob_r3a2eb3a0877fed3f_000001792b016657_1 ... (0s) Current status: D
 
 ### Locations Table
 ```ssh
-$ bq query --use_legacy_sql=false 'select count(*) from  `analog-patrol-311615.assessmentdb.locations`'
+$ bq query --use_legacy_sql=false 'select count(*) from  `assessmentdb.locations`'
 Waiting on bqjob_r55166f655f6cc662_000001792af92e97_1 ... (0s) Current status: DONE
 +------+
 | f0_  |
@@ -120,3 +120,26 @@ e.g. edb847a5-7313-e911-a820-a7f2c9e35195
 This transaction is **Return** but the first element of **transactions.itinerary** doesn't equal to last element of **transactions.itinerary** 
 ![CompareItineraryWithOneWayOrReturnSuspiciousSample02](images/CompareItineraryWithOneWayOrReturnSuspiciousSample02.png)
 
+### 4. Transactions - Missing AirpotCode Review
+Some of AirportCodes used by Transactions but don't exist in Locations or they came as null 
+
+sql: [TransactionsMissingLocationInfo.sql](queries/TransactionsMissingLocationInfo.sql)
+<br />
+result: [TransactionsMissingLocationInfo.csv](results/TransactionsMissingLocationInfo.csv)
+
+
+e.g. 4728dbc4-6710-ea11-a822-e453a8e76766
+
+This transaction uses 'GSV' AirCode 
+![TransactionsMissingLocationInfoSample01](images/TransactionsMissingLocationInfoSample01.png)
+
+The AirCode 'GSV' doesn't exist in location table
+```ssh
+$ bq query --use_legacy_sql=false 'select count(*) from `assessmentdb.locations` where airportcode="GSV"'
+Waiting on bqjob_r335d9a3452bdd9be_000001792e43bd7f_1 ... (0s) Current status: DONE   
++-----+
+| f0_ |
++-----+
+|   0 |
++-----+
+```
