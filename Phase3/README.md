@@ -46,7 +46,7 @@ $ zgrep -aio 'CountryName' input_data.tar.gz | wc -l
 ## Suspicious Data
 
 ### 1. Transactions - Itinerary and Segments Review
-There is some mismatch between the itinerary column and the segments columns
+There is some mismatch between the itinerary column and the segments columns<br>
 for the majority of the rows, for a given **transactions.uniqueid** sorting by **transactions.segment_segmentnumber** and **transactions.segment_legnumber** will give the same fights order as in **transactions.itinerary**
 
 sql: [CompareItineraryWithSegmentsSuspiciousCases.sql](queries/CompareItineraryWithSegmentsSuspiciousCases.sql)
@@ -67,7 +67,7 @@ the itinerary is BRU-BKK-MEL-BNE-BKK-BRU but based on Segments the itinerary is 
 ![CompareItineraryWithSegmentsSuspiciousSample01](images/CompareItineraryWithSegmentsSuspiciousSample01.png)
 
 ### 2. Transactions.Segments - arrivalairportcode and departureairportcode Review
-There is some mismatch between the Segment.arrivalairportcode and the Segment.departureairportcode
+There is some mismatch between the Segment.arrivalairportcode and the Segment.departureairportcode<br>
 for the majority of the rows, for a given **transactions.uniqueid** sorting by **transactions.segment_segmentnumber** and **transactions.segment_legnumber**, the **transactions.segment_arrivalairportcode** for the current row will be equal to **transactions.segment_arrivalairportcode** for the next row
 
 sql: [CompareArrivalairportcodeWithDepartureairportcodeSuspiciousCases.sql](queries/CompareArrivalairportcodeWithDepartureairportcodeSuspiciousCases.sql)
@@ -89,7 +89,7 @@ The **transactions.segment_arrivalairportcode** for the current row doesn't equa
 ![CompareArrivalairportcodeWithDepartureairportcodeSuspiciousSample01](images/CompareArrivalairportcodeWithDepartureairportcodeSuspiciousSample01.png)
 
 ### 3. Transactions - Itinerary and OneWayOrReturn Review
-There is some mismatch between the Itinerary and the type of transaction (OneWay or Return)
+There is some mismatch between the Itinerary and the type of transaction (OneWay or Return)<br>
 for the majority of the rows, if the type of transaction is **OneWay** the transaction's source shouldn't be equal to the transaction's destination, on the other hand, when type of transaction is **Return** the transaction's source should be equal to the transaction's destination  
 
 sql: [CompareItineraryWithOneWayOrReturnSuspiciousCases.sql](queries/CompareItineraryWithOneWayOrReturnSuspiciousCases.sql)
