@@ -1,6 +1,6 @@
 @startuml
 hide circle
-entity "transaction" {
+entity "transactions" {
     transactiondateutc: TIMESTAMP
     uniqueid: STRING
     itinerary: STRING
